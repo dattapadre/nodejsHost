@@ -1,0 +1,39 @@
+<%-include("navbar.ejs")%>
+
+<div class="container-fluid bg-white p-4" style="margin-top: 20px;">
+    <form action="/create_account" method="post">
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                UserName <br>
+                <input style="width: 100%;" class="form-control" type="text" name="user_name" id=""> <br>
+                UserMobile <br>
+                <input  style="width: 100%;" class="form-control" type="number" name="user_mobile" id=""> <br>
+                UserEmail <br>
+                <input  style="width: 100%;" class="form-control" type="email" name="user_email" id=""> <br>
+               password  <br>
+               <input  style="width: 100%;" class="form-control" type="password" name="password" id=""> <br>
+
+               <button>Create Account</button>
+               <br><br>
+               <a href="/login">Login</a>
+            </div>
+
+            <div class="col-md-4"></div>
+
+        </div>
+    </form>
+</div>        
+
+<%-include("footer.ejs")%>
+
+
+<!-- 
+CREATE TABLE users (
+user_id INT PRIMARY KEY AUTO_INCREMENT,
+user_name VARCHAR (100),
+user_mobile VARCHAR(12),
+useremail VARCHAR(100),
+password  TEXT 
+);
+-->

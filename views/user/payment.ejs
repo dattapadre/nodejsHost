@@ -1,0 +1,47 @@
+<html>
+<button id="rzp-button1" class="btn btn-outline-dark btn-lg">
+  <i class="fas fa-money-bill"></i> Pay Now
+</button>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+<script>
+  var options = {
+    "key": "rzp_test_bpN3aN81Oaf8Mo",
+    "amount": "<%=data[0].order_amount * 100%>",
+    "currency": "INR",
+    "name": "Acme Corp",
+    "description": "Test Payment",
+    "image": "https://yourwebsite.com/logo.png",
+
+    "method": {
+      "upi": true,
+      "card": true,
+      "wallet": true,
+      "netbanking": true,
+      "emi": true
+    },
+
+    // ✅ AUTO REDIRECT URL AFTER PAYMENT
+    "callback_url": "http://localhost:1000/check_payment/<%=data[0].order_id%>", 
+    "redirect": true,
+
+    "prefill": {
+      "name":'<%=data[0].customer_name%>',
+      "email": "gaurav.kumar@example.com",
+      "contact": "<%=data[0].customer_mobile%>"
+    },
+
+    "theme": {
+      "color": "#3399cc"
+    }
+  };
+
+  var rzp1 = new Razorpay(options);
+
+  document.getElementById("rzp-button1").onclick = function (e) {
+    rzp1.open();
+    e.preventDefault();
+  };
+</script>
+</html>

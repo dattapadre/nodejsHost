@@ -1,0 +1,50 @@
+<%-include("navbar.ejs")%>
+
+<div class="container-fluid bg-white p-4">
+    <form action="/admin/categary" method="post">
+    <div class="row">
+        <h1>Add Categary</h1>
+
+        
+            <div class="col-md-10 mt-4">
+                Categary Name 
+                <input class="form-control" type="text" name="categary_name" id="">
+            </div>
+            <div class="col-md-2 text-center mt-5">
+                <button class="btn btn-primary">Add categary</button>
+            </div>
+        
+    </div>
+
+    </form>
+</div>
+
+
+<div class="container-fluid bg-white p-4 mt-4">
+    <h1>Categary List</h1>
+
+
+    <table class="table table-sm table-striped table-bordered  text-center">
+        <tr>
+            <th>Action</th>
+            <th>Sr.No</th>
+            <th>Categary Name </th>
+        </tr>
+
+        <% categary.map(function(val,i){ %>
+
+            <tr>
+                <td>
+                    <a class="btn btn-primary " href=""><i class="fa-solid fa-pen-to-square"></i></a>
+                    <a class="btn btn-danger " href="/admin/delete_categary/<%=val.categary_id%>"><i class="fa-solid fa-trash-can"></i></a>
+                </td>
+                <td><%=i+1%></td>
+                <td><%=val.categary_name%></td>
+            </tr>
+
+       <%  }) %>
+    </table>
+    
+</div>
+
+<%-include("footer.ejs")%>

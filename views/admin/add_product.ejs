@@ -1,0 +1,151 @@
+<%-include("navbar.ejs")%>
+
+<div class="container-fluid bg-white p-4">
+    <form action="/admin/save_product" method="post" enctype="multipart/form-data">
+        <div class="row">
+        <div class="col-md-8">
+    <h1>Add Products</h1>
+
+        <div class="row">
+
+             <div class="col-md-6 mt-3">
+                Product categary  <b class="text-danger">*</b>
+                <!-- <input class="form-control" type="text" name="product_categary" id="" required> -->
+
+                <select class="form-control" name="categary_id" id="">
+                    <option class="text-center" > Select Categary</option>
+                    <% categary.map(function(val,i){ %>
+
+                        <option value="<%-val.categary_id%>"><%-val.categary_name%></option>
+                        
+                   <%  }) %>
+                </select>
+            </div>
+
+            <div class="col-md-6 mt-3">
+                Product Name  <b class="text-danger">*</b>
+                <input class="form-control" type="text" name="product_name" id="" required>
+            </div>
+
+             <div class="col-md-6 mt-3">
+                Product Company  <b class="text-danger">*</b>
+                <input class="form-control" type="text" name="product_company" list="data"  id="" required>
+            </div>
+
+            <datalist id="data">
+                <option value="Puma"></option>
+                <option value="Spike"></option>
+                <option value="Adidas"></option>
+                <option value="Nike"></option>
+            </datalist>
+
+
+              <div class="col-md-6 mt-3">
+                Colors <b class="text-danger">*</b>
+                <input class="form-control" type="text" name="product_colors" id="" required>
+            </div>
+
+            <div class="col-md-6 mt-3" >
+                Product Label <b class="text-danger">*</b>
+                <!-- <input class="form-control" type="text" name="product_colors" id=""> -->
+
+                <select  class="form-control" name="product_label" id="" required>
+                    <option >Select Product label</option>
+                    <option value="Featured"> Featured</option>
+                    <option value="best_selling" > best_selling</option>
+                    <option value="flash" > flash</option>
+                </select>
+            </div>
+
+            <div class="col-md-6 mt-3">
+                Image 1  <b class="text-danger">*</b>
+                <input class="form-control" type="file" name="product_image1" id="" required>
+            </div>
+
+             <div class="col-md-6 mt-3 ">
+                Image 2 <b class="text-danger">*</b>
+                <input class="form-control" type="file" name="product_image2" id="" required >
+            </div>
+
+             <div class="col-md-6 mt-3">
+                Image 3 
+                <input class="form-control" type="file" name="product_image3" id="">
+            </div>
+
+             <div class="col-md-6 mt-3">
+                Image 4 
+                <input class="form-control" type="file" name="product_image4" id="">
+            </div>
+
+        </div>
+        </div>
+        <div class="col-md-4 mt-3">
+            <div class="row">
+                <h1>Product Price</h1>
+                <div class="col-md-12 mt-3">
+                    
+                    <table class="table table-sm table-striped table-bordered  text-center">
+                        <tr>
+                            <th>Size</th>
+                            <th>Price</th>
+                            <th>Duplicate Price</th>
+                        </tr>
+
+                        <%
+
+                        var sizes = ["XS","S","M","L","XL","XXL"];
+                        
+                        for(var   i =0 ; i <sizes.length;i++){ %>
+                            
+                        <tr>
+                            <td><input readonly  class="form-control text-center" value="<%=sizes[i]%>" type="text" name="product_size" id=""></td>
+                            <td><input class="form-control" type="text" name="product_price" id=""></td>
+                            <td><input class="form-control" type="text" name="product_duplicate_price" id=""></td>
+                        </tr>
+
+                        <% } %>
+                        
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        
+            <div class="col-md-12 mt-3">
+                <textarea class="form-control editor" name="product_details"></textarea>
+            </div>
+
+            <div class="col-md-12 text-center">
+                <button class="btn btn-primary mt-3">Add Product </button>
+            </div>
+
+        </div>
+    </form>
+</div>
+<%-include("footer.ejs")%>
+
+
+
+                                 <!--CREATE TABLE product (
+                                 product_id  INT PRIMARY KEY AUTO_INCREMENT ,
+                                 categary_id INT ,
+                                 product_name VARCHAR(100),
+                                 product_colors VARCHAR(100),
+                                 product_label VARCHAR(100),
+                                 product_company VARCHAR(100),
+                                 product_details TEXT,
+                                 product_image1 TEXT,
+                                 product_image2 TEXT,
+                                 product_image3 TEXT,
+                                 product_image4 TEXT
+
+                                 ) -->
+
+
+                                 <!--  CREATE TABLE  product_pricing(
+                                    product_pricing_id INT PRIMARY KEY AUTO_INCREMENT ,
+                                    product_id INT ,
+                                    product_size VARCHAR(100),
+                                    product_price INT ,
+                                    product_duplicate_price INT 
+                                   ) -->

@@ -1,0 +1,88 @@
+<%-include("navbar.ejs")%>
+
+<div class="container-fluid bg-white p-4">
+  <h1>Add Slider</h1>
+
+  <form action="/admin/slider" method="post" enctype="multipart/form-data">
+    <div class="row">
+      <div class="col-md-4 mt-4">
+        Enter Title
+        <input class="form-control" type="text" name="title" id="" />
+      </div>
+
+      <div class="col-md-8 mt-4">
+        Slider Details
+        <textarea class="form-control" name="details" id=""></textarea>
+      </div>
+
+      <div class="col-md-4 mt-4">
+        Button Text
+        <input class="form-control" type="text" name="btn_text" id="" />
+      </div>
+
+      <div class="col-md-4 mt-4">
+        Button URL
+        <input class="form-control" type="text" name="btn_url" id="" />
+      </div>
+
+      <div class="col-md-4 mt-4">
+        Silder Image
+        <input class="form-control" type="file" name="slider_image" id="" />
+      </div>
+
+      <div class="col-md-12 text-center mt-5">
+        <button class="btn btn-primary">Add Silder</button>
+      </div>
+    </div>
+  </form>
+</div>
+
+
+
+<div class="container-fluid bg-white mt-4 p-4">
+  <h1>Slider List</h1>
+
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table table-striped">
+        <tr>
+          <th>Action</th>
+          <th>Sr.NO</th>
+          <th>Slider Title</th>
+          <th>Details</th>
+          <th>Button Text</th>
+          <th>Button URL</th>
+          <th>slider Image </th>
+        </tr>
+
+        <% slider.map(function(val,i){ %>
+
+          <tr>
+            <td>
+              <a href="/admin/delete_slider/<%=val.id%>" class="btn btn-danger mt-3"><i class="fa-solid fa-trash"></i></a>
+              <a href="" class="btn btn-primary mt-2"><i class="fa-solid fa-pen-to-square"></i></a>
+            </td>
+            <td><%=i+1%></td>
+            <td><%=val.title%></td>
+            <td><%=val.details%></td>
+            <td><%=val.btn_text%></td>
+            <td><a href="<%=val.btn_url%>">Click</a></td>
+            <td>
+              <img src="/<%=val.slider_image%>" alt="">
+            </td>
+          </tr>
+
+       <%  }) %>
+
+      </table>
+    </div>
+  </div>
+
+
+
+</div>
+
+
+
+
+<%-include("footer.ejs")%>

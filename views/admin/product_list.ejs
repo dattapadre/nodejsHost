@@ -1,0 +1,42 @@
+<%-include("navbar.ejs")%>
+
+<div class="container-fluid bg-white p-4">
+
+    <h1>Product List</h1>
+
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-sm table-striped table-bordered  text-center">
+                <tr>
+                    <th>Action</th>
+                    <th>Sr.No</th>
+                    <th>Product Name </th>
+                    <th> Company</th>
+                    <th> label</th>
+                    <th>Colors</th>
+                    <th>Price Range</th>
+                </tr>
+
+                <% product_info.map(function(val,i){ %>
+
+                    <tr>
+                        <td>
+                            <a class="btn btn-success" href="/admin/view_product/<%=val.product_id%>"><i class="fa-solid fa-eye"></i></a>
+                            <a class="btn btn-primary" href=""><i class="fa-solid fa-pen-to-square"></i></a>
+                            <a class="btn btn-danger" href="/admin/delete_product/<%=val.product_id%>"><i class="fa-solid fa-trash-can"></i></a>
+                        </td>
+                        <td><%=i+1%></td>
+                        <td><%=val.product_name%></td>
+                        <td><%=val.product_company%></td>
+                        <td><%=val.product_label%></td>
+                        <td><%=val.product_colors%></td>
+                        <td>&#8377; <%=val.price%> - <%=val.product_duplicate_price%> </td>
+                    </tr>
+
+              <%   }) %>
+            </table>
+        </div>
+    </div>
+
+</div>
+<%-include("footer.ejs")%>

@@ -1,0 +1,135 @@
+<%-include('navbar.ejs')%>
+
+<form action="/order" method="post">
+
+<div
+  style="margin-top: 50px; margin-bottom: 50px"
+  class="container-fluid bg-white p-4"
+>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="row">
+        <div class="col-md-8">
+          <div class="row">
+            <div class="col-md-6">
+              Enter Name <br />
+              <input
+                style="width: 100%"
+                class="form-control"
+                type="text"
+                name="customer_name"
+                id=""
+              />
+            </div>
+            <div class="col-md-6">
+              Enter Mobile <br />
+              <input
+                style="width: 100%"
+                class="form-control"
+                type="number"
+                name="customer_mobile"
+                id=""
+              />
+            </div>
+
+            <div class="col-md-6">
+              Enter state <br />
+              <input
+                style="width: 100%"
+                class="form-control"
+                type="text"
+                name="state"
+                id=""
+              />
+            </div>
+            <div class="col-md-6">
+              Enter district <br />
+              <input
+                style="width: 100%"
+                class="form-control"
+                type="text"
+                name="district"
+                id=""
+              />
+            </div>
+
+            <div class="col-md-6">
+              Enter city <br />
+              <input
+                style="width: 100%"
+                class="form-control"
+                type="text"
+                name="city"
+                id=""
+              />
+            </div>
+
+            <div class="col-md-6">
+              Enter area <br />
+              <input
+                style="width: 100%"
+                class="form-control"
+                type="text"
+                name="area"
+                id=""
+              />
+            </div>
+            <div class="col-md-6">
+              Enter landmark <br />
+              <input
+                style="width: 100%"
+                class="form-control"
+                type="text"
+                name="landmark"
+                id=""
+              />
+            </div>
+            <div class="col-md-6">
+              Enter Pincode <br />
+              <input
+                style="width: 100%"
+                class="form-control"
+                type="number"
+                name="pincode"
+                id=""
+              />
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <h4>Order Summary</h4>
+          <hr />
+
+          <% var sum =0 %> <% cart.map(function(val){ %>
+          <div class="d-flex justify-content-between">
+            <p><%= val.product_name %> <b>X</b> <%=val.qty%></p>
+            <p>₹<%= val.product_price * val.qty %></p>
+          </div>
+
+          <% sum += (val.product_price * val.qty)%> <% }) %>
+
+          <hr />
+
+          <div class="d-flex justify-content-between">
+            <p>Product Amount Total</p>
+            <p>₹ <%=sum%></p>
+          </div>
+
+          <select name="payment_type" class="form-control" id="">
+            <option value="Online">Online Payment</option>
+            <option value="offline">Cash On Delivery</option>
+          </select>
+        </div>
+
+        <div class="col-md-12 text-center">
+          <button>order Now</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+</form>
+
+<%-include('footer.ejs')%>

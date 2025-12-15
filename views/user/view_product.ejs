@@ -1,0 +1,115 @@
+<%-include("navbar.ejs")%>
+
+<div class="container bg-white p-4" style="margin: 20px 0px 20px 0px">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-4">
+          <img
+            src="/upload/<%=product_info[0].product_image1%>"
+            style="height: 75%"
+            alt=""
+            id="main_image"
+          />
+          <br /><br />
+          <img
+            onclick="main_image.src=this.src"
+            src="/upload/<%=product_info[0].product_image1%>"
+            style="height: 100px; width: 90px; margin-top: 5px"
+            alt="" 
+          />
+          <img
+            onclick="main_image.src=this.src"
+            src="/upload/<%=product_info[0].product_image2%>"
+            style="height: 100px; width: 90px; margin-top: 5px"
+            alt=""
+          />
+          <img
+            onclick="main_image.src=this.src"
+            src="/upload/<%=product_info[0].product_image3%>"
+            style="height: 100px; width: 90px; margin-top: 5px"
+            alt=""
+          />
+          <img
+            onclick="main_image.src=this.src"
+            src="/upload/<%=product_info[0].product_image4%>"
+            style="height: 100px; width: 90px; margin-top: 5px"
+            alt=""
+          />
+        </div>
+        <div class="col-md-1"></div>
+        <div class="col-md-6">
+          <button style="border-radius: 20px">
+            <%=product_info[0].product_company%>
+          </button>
+          <br />
+          <h2><%=product_info[0].product_name%></h2>
+          <p>company :<b><%=product_info[0].product_company%></b></p>
+          <p>color : <b><%=product_info[0].product_colors%></b></p>
+
+         <h3 id="price">0000</h3>
+
+          <% price.map(function(val, i){ %>
+
+            <% if(val.product_price > 0){  %>
+
+
+          <div style="display: inline-block" class="box">
+            <button onclick="setprice('<%=val.product_price%>',this,'<%=val.product_pricing_id%>')" class="btn_size btn btn-outline-dark"onclick="setprice('<%=val.product_price%>',this)"style="margin-right: 10px; border-radius: 20px"><%= val.product_size %> </button>
+          </div>
+         
+            <% } %>
+          
+         <% }) %>
+
+          <br />
+
+          <button onclick="add_to_cart()">
+            Add To cart
+            <i
+              style="margin-left: 10px"
+              class="fa-solid fa-cart-arrow-down"
+            ></i>
+          </button>
+
+          <br/>
+
+          <p><%=product_info[0].product_details%></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<script>
+
+ var active_product_pricing_id ='';
+
+function setprice(price,ele,product_pricing_id){
+
+ active_product_pricing_id =product_pricing_id;
+
+  var price = document.getElementById("price").innerHTML = '&#8377;' +price+'/-';
+
+  $(".btn_size").addClass("btn-outline-dark")
+  ele.classList.remove("btn-outline-dark")
+
+}
+
+function add_to_cart(){
+
+
+  var url = `/add_to_cart/<%=product_info[0].product_id%>/`+active_product_pricing_id;
+  location.href = url;
+
+}
+
+
+</script>
+
+<%-include("footer.ejs")%>
+
+

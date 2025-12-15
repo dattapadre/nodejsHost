@@ -1,0 +1,231 @@
+<%-include("navbar.ejs")%>
+
+<section
+  class="site-banner jarallax min-height300 padding-large"
+  style="
+    background: url(images/hero-image.jpg) no-repeat;
+    background-position: top;
+  "
+>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h1 class="page-title">Shop page</h1>
+        <div class="breadcrumbs">
+          <span class="item">
+            <a href="index.html">Home /</a>
+          </span>
+          <span class="item">Shop</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="shopify-grid padding-large">
+  <div class="container">
+    <div class="row">
+      <section id="selling-products" class="col-md-9 product-store">
+        <div class="container">
+          <ul class="tabs list-unstyled">
+           <a href="/shop"> <li data-tab-target="#all" class="active tab">All</li></a>
+            <% categary.map(function(val,i){ %>
+
+            <a href="/shop?categary_id=<%=val.categary_id%>"><li data-tab-target="#shoes" class="tab"><%=val.categary_name%></li></a>
+
+            <% }) %>
+          </ul>
+          <div class="tab-content">
+            <div id="all" data-tab-content class="active">
+              <div class="row d-flex flex-wrap">
+                <% product.map(function(val,i){ %>
+
+                  <a href="/view_product/<%=val.product_id%>">
+                <div class="product-item col-lg-4 col-md-6 col-sm-6">
+                  <div class="image-holder">
+                    <img
+                      src="/upload/<%=val.product_image1%>"
+                      alt="Books"
+                      class="product-image"
+                    />
+                  </div>
+                  <div class="cart-concern">
+                    <div
+                      class="cart-button d-flex justify-content-between align-items-center"
+                    >
+                      <button
+                        type="button"
+                        class="btn-wrap cart-link d-flex align-items-center"
+                      >
+                         view Product 
+                      </button>
+                    </div>
+                  </div>
+                  <div class="product-detail">
+                    <h3 class="product-title">
+                      <a href="single-product.html"><%=val.product_name%></a>
+                    </h3>
+                    <div class="item-price text-primary">
+                      &#8377; <%=val.price%>
+                      <b class="text-danger"
+                        ><del style="color: red">
+                          &#8377;<%=val.product_duplicate_price%></del
+                        ></b
+                      >
+                    </div>
+                  </div>
+                </div>
+                </a>
+
+                <% }) %>
+              </div>
+            </div>
+          </div>
+          <nav
+            class="navigation paging-navigation text-center padding-medium"
+            role="navigation"
+          >
+            <div
+              class="pagination loop-pagination d-flex justify-content-center"
+            >
+              <a href="#" class="pagination-arrow d-flex align-items-center">
+                <i class="icon icon-arrow-left"></i>
+              </a>
+              <span aria-current="page" class="page-numbers current">1</span>
+              <a class="page-numbers" href="#">2</a>
+              <a class="page-numbers" href="#">3</a>
+              <a href="#" class="pagination-arrow d-flex align-items-center">
+                <i class="icon icon-arrow-right"></i>
+              </a>
+            </div>
+          </nav>
+        </div>
+      </section>
+
+      <aside class="col-md-3">
+        <div class="sidebar">
+          <div class="widgets widget-menu">
+            <div class="widget-search-bar">
+
+
+              <form role="search" method="get" class="d-flex">
+                <input class="search-field " name="product_name"  placeholder="Search" type="text" />
+                <button class="btn btn-dark">
+                  <i class="icon icon-search"></i>
+                </button>
+              </form>
+              
+            </div>
+          </div>
+          <div class="widgets widget-product-tags">
+            <h5 class="widget-title">Color</h5>
+            <ul class="product-tags sidebar-list list-unstyled">
+              <% colors.map(function(val,i){ %>
+
+              <li class="tags-item">
+                <a href="/shop?color=<%=val.product_colors%>"><%=val.product_colors%></a>
+              </li>
+
+              <% }) %>
+            </ul>
+          </div>
+          <div class="widgets widget-product-brands">
+            <h5 class="widget-title">Brands</h5>
+            <ul class="product-tags sidebar-list list-unstyled">
+              <% company_name.map(function(val,i){ %>
+
+              <li class="tags-item">
+                <a href="/shop?company=<%=val.product_company%>"><%=val.product_company%></a>
+              </li>
+
+              <% }) %>
+            </ul>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</div>
+
+<hr />
+<section id="latest-blog" class="padding-large">
+  <div class="container">
+    <div
+      class="section-header d-flex flex-wrap align-items-center justify-content-between"
+    >
+      <h2 class="section-title">our Journal</h2>
+      <div class="btn-wrap align-right">
+        <a href="blog.html" class="d-flex align-items-center"
+          >Read All Articles <i class="icon icon icon-arrow-io"></i>
+        </a>
+      </div>
+    </div>
+    <div class="row d-flex flex-wrap">
+      <article class="col-md-4 post-item">
+        <div class="image-holder zoom-effect">
+          <a href="single-post.html">
+            <img src="/images/post-img1.jpg" alt="post" class="post-image" />
+          </a>
+        </div>
+        <div class="post-content d-flex">
+          <div class="meta-date">
+            <div class="meta-day text-primary">22</div>
+            <div class="meta-month">Aug-2021</div>
+          </div>
+          <div class="post-header">
+            <h3 class="post-title">
+              <a href="single-post.html"
+                >top 10 casual look ideas to dress up your kids</a
+              >
+            </h3>
+            <a href="blog.html" class="blog-categories">Fashion</a>
+          </div>
+        </div>
+      </article>
+      <article class="col-md-4 post-item">
+        <div class="image-holder zoom-effect">
+          <a href="single-post.html">
+            <img src="/images/post-img2.jpg" alt="post" class="post-image" />
+          </a>
+        </div>
+        <div class="post-content d-flex">
+          <div class="meta-date">
+            <div class="meta-day text-primary">25</div>
+            <div class="meta-month">Aug-2021</div>
+          </div>
+          <div class="post-header">
+            <h3 class="post-title">
+              <a href="single-post.html"
+                >Latest trends of wearing street wears supremely</a
+              >
+            </h3>
+            <a href="blog.html" class="blog-categories">Trending</a>
+          </div>
+        </div>
+      </article>
+      <article class="col-md-4 post-item">
+        <div class="image-holder zoom-effect">
+          <a href="single-post.html">
+            <img src="/images/post-img3.jpg" alt="post" class="post-image" />
+          </a>
+        </div>
+        <div class="post-content d-flex">
+          <div class="meta-date">
+            <div class="meta-day text-primary">28</div>
+            <div class="meta-month">Aug-2021</div>
+          </div>
+          <div class="post-header">
+            <h3 class="post-title">
+              <a href="single-post.html"
+                >types of comfortable clothes ideas for women</a
+              >
+            </h3>
+            <a href="blog.html" class="blog-categories">Inspiration</a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<%-include("footer.ejs")%>
